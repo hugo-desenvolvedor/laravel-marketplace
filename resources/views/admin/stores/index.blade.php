@@ -14,10 +14,15 @@
         <tr>
             <td>{{ $store->id }}</td>
             <td>{{ $store->name }}</td>
-            <td>
+            <td class="btn-group">
                 <a href="{{ route('admin.stores.edit', $store->id) }}" class="btn btn-primary">{{ __('Edit') }}</a>
                 &nbsp;
-                <a href="{{ route('admin.stores.destroy', $store->id) }}" class="btn btn-danger">{{ __('Delete') }}</a>
+                <form action="{{{ route('admin.stores.destroy', $store->id) }}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
+                </form>
             </td>
         </tr>
     @endforeach

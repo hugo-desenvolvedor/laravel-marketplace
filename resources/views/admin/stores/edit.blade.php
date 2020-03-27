@@ -3,6 +3,7 @@
     <h1>{{ __('Edit Store') }}</h1>
     <form action="{{ action('Admin\\StoreController@update', $store->id) }}" method="POST">
         @csrf
+        @method('PUT')
 
         <div class="form-group">
             <label for="name">

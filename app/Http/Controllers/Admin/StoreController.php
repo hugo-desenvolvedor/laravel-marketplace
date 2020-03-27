@@ -9,12 +9,23 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
+    private $store;
+
+    /**
+     * StoreController constructor.
+     * @param $store
+     */
+    public function __construct(Store $store)
+    {
+        $this->store = $store;
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $stores = Store::paginate(10);
+        $stores = $this->store->paginate(10);
 
         return view('admin.stores.index', compact('stores'));
     }
@@ -50,7 +61,7 @@ class StoreController extends Controller
      */
     public function edit($store)
     {
-        $store = Store::find($store);
+        $store = $this->store->findOrFail($store);
 
         return view('admin.stores.edit', compact('store'));
     }
@@ -63,7 +74,7 @@ class StoreController extends Controller
     public function update(Request $request, $store)
     {
         $data = $request->all();
-        $store = Store::find($store);
+        $store = $this->store->find($store);
         $store->update($data);
 
         flash(__('Store updated with success'))->success();
@@ -76,7 +87,7 @@ class StoreController extends Controller
      */
     public function destroy($store)
     {
-        $store = Store::find($store);
+        $store = $this->store->find($store);
         $store->delete();
 
         flash(__('Store deleted with success'))->success();
