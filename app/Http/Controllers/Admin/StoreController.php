@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Store;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class StoreController extends Controller
     {
         $stores = Store::paginate(10);
 
-        return view('admin.stores', compact('stores'));
+        return view('admin.stores.index', compact('stores'));
     }
 
     /**
@@ -25,12 +26,12 @@ class StoreController extends Controller
     {
         $users = User::all(['id', 'name']);
 
-        return view('admin.create', compact('users'));
+        return view('admin.stores.create', compact('users'));
     }
 
     /**
      * @param Request $request
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -38,6 +39,47 @@ class StoreController extends Controller
         $user = User::find($data['user']);
         $store = $user->store()->create($data);
 
-        return $store;
+        flash(__('Store created with success'))->success();
+
+        return redirect()->route('admin.stores.index');
+    }
+
+    /**
+     * @param $store
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($store)
+    {
+        $store = Store::find($store);
+
+        return view('admin.stores.edit', compact('store'));
+    }
+
+    /**
+     * @param Request $request
+     * @param $store
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, $store)
+    {
+        $data = $request->all();
+        $store = Store::find($store);
+        $store->update($data);
+
+        flash(__('Store updated with success'))->success();
+        return redirect()->route('admin.stores.index');
+    }
+
+    /**
+     * @param $store
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($store)
+    {
+        $store = Store::find($store);
+        $store->delete();
+
+        flash(__('Store deleted with success'))->success();
+        return redirect()->route('admin.stores.index');
     }
 }
