@@ -35,8 +35,6 @@ class StoreController extends Controller
      */
     public function create()
     {
-        $users = User::all(['id', 'name']);
-
         return view('admin.stores.create', compact('users'));
     }
 
@@ -47,11 +45,10 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $user = User::find($data['user']);
+        $user = auth()->user();
         $store = $user->store()->create($data);
 
         flash(__('Store created with success'))->success();
-
         return redirect()->route('admin.stores.index');
     }
 
