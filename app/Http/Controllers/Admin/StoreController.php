@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Store;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRequest;
 
 class StoreController extends Controller
 {
@@ -25,9 +26,9 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $stores = $this->store->paginate(10);
+        $store = auth()->user()->store;
 
-        return view('admin.stores.index', compact('stores'));
+        return view('admin.stores.index', compact('store'));
     }
 
     /**
@@ -35,14 +36,20 @@ class StoreController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->store()->count()) {
+            flash(__('You already have a Store'))->warning();
+
+            return redirect()->route('admin.stores.index');
+        }
+
         return view('admin.stores.create', compact('users'));
     }
 
     /**
-     * @param Request $request
+     * @param StoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $data = $request->all();
         $user = auth()->user();
@@ -64,11 +71,11 @@ class StoreController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param StoreRequest $request
      * @param $store
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $store)
+    public function update(StoreRequest $request, $store)
     {
         $data = $request->all();
         $store = $this->store->find($store);
