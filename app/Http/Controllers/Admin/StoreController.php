@@ -19,6 +19,7 @@ class StoreController extends Controller
     public function __construct(Store $store)
     {
         $this->store = $store;
+        $this->middleware('user.has.store')->only(['create', 'store']);
     }
 
     /**
@@ -36,12 +37,6 @@ class StoreController extends Controller
      */
     public function create()
     {
-        if(auth()->user()->store()->count()) {
-            flash(__('You already have a Store'))->warning();
-
-            return redirect()->route('admin.stores.index');
-        }
-
         return view('admin.stores.create', compact('users'));
     }
 
