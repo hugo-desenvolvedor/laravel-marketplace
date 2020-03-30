@@ -28,6 +28,9 @@
             <li class="nav-item @if(request()->is('admin/products*')) active @endif ">
                 <a class="nav-link" href="{{ route('admin.products.index') }}">{{ __('Products') }}</a>
             </li>
+            <li class="nav-item @if(request()->is('admin/categories*')) active @endif ">
+                <a class="nav-link" href="{{ route('admin.categories.index') }}">{{ __('Categories') }}</a>
+            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
