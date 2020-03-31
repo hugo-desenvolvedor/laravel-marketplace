@@ -28,6 +28,7 @@ class ProductRequest extends FormRequest
             'description' => 'required|min:30',
             'body' => 'required',
             'price' => 'required',
+            'photos' => 'image',
         ];
     }
 
@@ -39,6 +40,7 @@ class ProductRequest extends FormRequest
         return [
             'required' => __('The :attribute field is required.'),
             'min' => __('The description must be at least :min characters.'),
+            'image' => __('The file is not an image.'),
         ];
     }
 }

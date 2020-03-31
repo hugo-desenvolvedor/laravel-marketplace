@@ -28,6 +28,8 @@ class StoreRequest extends FormRequest
             'description' => 'required|min:10',
             'phone' => 'required',
             'mobile_phone' => 'required',
+            'categories' => 'required',
+            'image' => __('The file is not an image.'),
         ];
     }
 
@@ -39,6 +41,7 @@ class StoreRequest extends FormRequest
         return [
             'required' => __('The :attribute field is required.'),
             'min' => __('The description must be at least :min characters.'),
+            'image' => __('The file is not an image.'),
         ];
     }
 }

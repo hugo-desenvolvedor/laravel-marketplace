@@ -56,16 +56,22 @@
             <label for="category">
                 {{__('Categories')}}
             </label>
-            <select name="categories[]" id="category" class="form-control" multiple>
+            <select name="categories[]" id="category" class="form-control @error('categories') is-invalid @enderror" multiple>
                 @foreach($categories as $category)
                     <option value="{{$category->id}}"  {{ $product->categories->contains($category) ? ' selected' : '' }}>{{$category->name}}</option>
                 @endforeach
             </select>
+            @error('categories')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group">
             <label>{{ __('Photos') }}</label>
-            <input type="file" name="photos[]" class="form-control" multiple>
+            <input type="file" name="photos[]" class="form-control @error('photos') is-invalid @enderror" multiple>
+            @error('photos')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group">
