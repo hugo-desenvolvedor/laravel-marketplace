@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>{{ __('Add Product') }}</h1>
-<form action="{{ action('Admin\\ProductController@store') }}" method="POST">
+<form action="{{ action('Admin\\ProductController@store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="form-group">
@@ -53,14 +53,19 @@
     </div>
 
     <div class="form-group">
-        <label for="user">
-            {{__('Stores')}}
+        <label for="category">
+            {{__('Categories')}}
         </label>
-        <select name="store" id="store" class="form-control">
-            @foreach($stores as $store)
-                <option value="{{$store->id}}">{{$store->name}}</option>
+        <select name="categories[]" id="category" class="form-control" multiple>
+            @foreach($categories as $category)
+                <option value="{{$category->id}}">{{$category->name}}</option>
             @endforeach
         </select>
+    </div>
+
+    <div class="form-group">
+        <label>{{ __('Photos') }}</label>
+        <input type="file" name="photos[]" class="form-control" multiple>
     </div>
 
     <div class="form-group">

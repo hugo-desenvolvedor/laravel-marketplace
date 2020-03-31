@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <h1>{{ __('Edit Store') }}</h1>
-    <form action="{{ action('Admin\\StoreController@update', $store->id) }}" method="POST">
+    <form action="{{ action('Admin\\StoreController@update', $store->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -43,6 +43,14 @@
             @error('mobile_phone')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
+        </div>
+
+        <div class="form-group">
+            <p>
+                <img src="{{ asset('storage/' . $store->logo) }}" alt="">
+            </p>
+            <label>{{ __('Logo') }}</label>
+            <input type="file" name="logo" class="form-control">
         </div>
 
         <div class="form-group">

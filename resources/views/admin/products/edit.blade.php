@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <h1>{{ __('Edit Product') }}</h1>
-    <form action="{{ action('Admin\\ProductController@update', $product->id) }}" method="POST">
+    <form action="{{ action('Admin\\ProductController@update', $product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -53,7 +53,37 @@
         </div>
 
         <div class="form-group">
+            <label for="category">
+                {{__('Categories')}}
+            </label>
+            <select name="categories[]" id="category" class="form-control" multiple>
+                @foreach($categories as $category)
+                    <option value="{{$category->id}}"  {{ $product->categories->contains($category) ? ' selected' : '' }}>{{$category->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>{{ __('Photos') }}</label>
+            <input type="file" name="photos[]" class="form-control" multiple>
+        </div>
+
+        <div class="form-group">
             <button type="submit" class="btn btn-lg btn-success">{{ __('Save') }}</button>
         </div>
     </form>
+    <div class="row">
+        @foreach($product->photos as $photo)
+            <div class="col-4 text-center">
+                <img src="{{ asset('storage/' . $photo->image) }}" alt="" class="img-fluid">
+                <form action="{{ route('admin.photo.remove') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="photoName" value="{{ $photo->image }}">
+                    <button type="submit" class="btn btn-lg btn-danger">
+                        {{__('Delete')}}
+                    </button>
+                </form>
+            </div>
+        @endforeach
+    </div>
 @endsection

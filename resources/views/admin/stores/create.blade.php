@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>{{ __('Add Store') }}</h1>
-<form action="{{ action('Admin\\StoreController@store') }}" method="POST">
+<form action="{{ action('Admin\\StoreController@store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="form-group">
@@ -43,6 +43,11 @@
         @error('mobile_phone')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
+    </div>
+
+    <div class="form-group">
+        <label>{{ __('Logo') }}</label>
+        <input type="file" name="logo" class="form-control">
     </div>
 
     <div class="form-group">
