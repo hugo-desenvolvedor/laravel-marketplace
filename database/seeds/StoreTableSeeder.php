@@ -14,11 +14,13 @@ class StoreTableSeeder extends Seeder
         $stores = \App\Store::all();
 
         foreach ($stores as $store) {
-            // Using the method 'save' instead 'create': 'save' store an object, while 'create' store an array
-            $store->products()->save(
-                // The method 'make' returns an object with fake data
-                factory(\App\Product::class)->make()
-            );
+            for ($i = 0; $i < 36; $i++) {
+               // Using the method 'save' instead 'create': 'save' store an object, while 'create' store an array
+               $store->products()->save(
+                    // The method 'make' returns an object with fake data
+                    factory(\App\Product::class)->make()
+                );
+           }
         }
     }
 }
