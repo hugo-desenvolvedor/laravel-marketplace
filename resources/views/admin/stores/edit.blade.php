@@ -57,13 +57,6 @@
         </div>
 
         <div class="form-group">
-            <label for="slug">
-                {{__('Slug')}}
-            </label>
-            <input type="text" id="slug" name="slug" class="form-control" value="{{ $store->slug }}">
-        </div>
-
-        <div class="form-group">
             <button type="submit" class="btn btn-lg btn-success">{{ __('Save') }}</button>
         </div>
     </form>

@@ -50,13 +50,6 @@
         </div>
 
         <div class="form-group">
-            <label for="slug">
-                {{__('Slug')}}
-            </label>
-            <input type="text" id="slug" name="slug" class="form-control">
-        </div>
-
-        <div class="form-group">
             <label for="category">
                 {{__('Categories')}}
             </label>
@@ -72,8 +65,8 @@
 
         <div class="form-group">
             <label>{{ __('Photos') }}</label>
-            <input type="file" name="photos[]" multiple class="form-control @error('photos') is-invalid @enderror">
-            @error('photos')
+            <input type="file" name="photos[]" multiple class="form-control @error('photos.*') is-invalid @enderror">
+            @error('photos.*')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
