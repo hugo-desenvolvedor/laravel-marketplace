@@ -35,7 +35,7 @@
                     <a class="nav-link" href="{{route('admin.stores.index')}}">{{ __('Stores') }} <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item @if(request()->is('admin/products*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.products.index')}}">{{('Products')}}</a>
+                    <a class="nav-link" href="{{route('admin.products.index')}}">{{ __('Products') }}</a>
                 </li>
                 <li class="nav-item @if(request()->is('admin/categories*')) active @endif">
                     <a class="nav-link" href="{{route('admin.categories.index')}}">{{ __('Categories') }}</a>
