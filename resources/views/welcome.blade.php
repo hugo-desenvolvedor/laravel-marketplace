@@ -4,7 +4,7 @@
     <div class="front row">
         @foreach($products as $key => $product)
             <div class="col-md-4">
-                <div class="card" style="width: 98%">
+                <div class="card" style="width: 98%; height: 100%">
                     @if($product->photos->count())
                         <img src="{{ 'storage/' . $product->photos->first()->image }}" alt="" class="card-img-top">
                     @else
