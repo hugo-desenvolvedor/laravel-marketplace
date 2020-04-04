@@ -18,7 +18,6 @@ class HomeController extends Controller
         $this->product = $product;
     }
 
-
     /**
      * Show the application dashboard.
      *
@@ -31,6 +30,10 @@ class HomeController extends Controller
         return view('welcome', compact('products'));
     }
 
+    /**
+     * @param $slug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function single($slug)
     {
         $product = $this->product->whereSlug($slug)->first();

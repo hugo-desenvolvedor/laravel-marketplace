@@ -44,20 +44,15 @@
 
             <div class="my-2 my-lg-0">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="#"
-                           onclick="event.preventDefault();document.querySelector('form.logout').submit();
-                        ">
-                            {{ __('Logoff') }}
-                        </a>
-
-                        <form action="{{route('logout')}}" class="logout" method="POST" style="display:none;">
-                            @csrf
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <span class="nav-link">{{auth()->user()->name}}</span>
+                    <li>
+                        @if(session()->has('cart'))
+                            <a href="{{ route('cart.index') }}" class="nav-link">
+                                <span class="badge badge-danger">
+                                    {{ array_sum(array_column(session()->get('cart'), 'amount')) }}
+                                </span>
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        @endif
                     </li>
                 </ul>
             </div>

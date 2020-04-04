@@ -24,5 +24,17 @@
   "Content": "Conteúdo",
   "Photos": "Fotos",
   "Search": "Busca",
-  "Home": "Início"
+  "Home": "Início",
+  "Buy": "Comprar",
+  "Cart": "Carrinho",
+  "Amount": "Quantidade",
+  "Product added to cart!": "Produto adicionado ao carrinho!",
+  "Password": "Senha",
+  "Shop Cart": "Carrinho de Compras",
+  "Total": "Total",
+  "Cancel": "Cancelar",
+  "Confirm": "Confirmar",
+  "Go to Login": "Ir para Login",
+  "Page Expired": "Página Expirada",
+  "Cart cancelled": "Compra cancelada"
 }
