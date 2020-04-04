@@ -51,7 +51,7 @@
                 </tbody>
             </table>
             <hr>
-            <a href="#" class="btn btn-lg btn-success float-right">{{ __('Confirm') }}</a>
+            <a href="{{ route('checkout.index') }}" class="btn btn-lg btn-success float-right">{{ __('Confirm') }}</a>
             <a href="{{ route('cart.cancel') }}" class="btn btn-lg btn-danger float-left">{{ __('Cancel') }}</a>
         </div>
     </div>

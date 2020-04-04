@@ -41,22 +41,23 @@
                     <a class="nav-link" href="{{route('admin.categories.index')}}">{{ __('Categories') }}</a>
                 </li>
             </ul>
-
-            <div class="my-2 my-lg-0">
-                <ul class="navbar-nav mr-auto">
-                    <li>
-                        @if(session()->has('cart'))
-                            <a href="{{ route('cart.index') }}" class="nav-link">
-                                <span class="badge badge-danger">
-                                    {{ array_sum(array_column(session()->get('cart'), 'amount')) }}
-                                </span>
-                                <i class="fa fa-shopping-cart"></i>
-                            </a>
-                        @endif
-                    </li>
-                </ul>
-            </div>
         @endauth
+
+        <div class="my-2 my-lg-0">
+            <ul class="navbar-nav mr-auto">
+                <li>
+                    @if(session()->has('cart'))
+                        <a href="{{ route('cart.index') }}" class="nav-link">
+                            <span class="badge badge-danger">
+{{--                                {{ array_sum(array_column(session()->get('cart'), 'amount')) }}--}}
+                                {{ count(session()->get('cart')) }}
+                            </span>
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                    @endif
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
