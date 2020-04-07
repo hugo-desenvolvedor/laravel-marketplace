@@ -22,6 +22,8 @@ class Store extends Model
     ];
 
     /**
+     * Generate slug name when the Store is created.
+     *
      * @return SlugOptions
      */
     public function getSlugOptions(): SlugOptions
@@ -32,7 +34,7 @@ class Store extends Model
     }
 
     /**
-     * Get user
+     * Get user.
      *
      * @return BelongsTo
      */
@@ -42,12 +44,22 @@ class Store extends Model
     }
 
     /**
-     * Get products
+     * Get products.
      *
      * @return HasMany
      */
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    /**
+     * Get orders.
+     *
+     * @return HasMany
+     */
+    public function orders()
+    {
+        return $this->hasMany(UserOrder::class);
     }
 }

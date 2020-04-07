@@ -21,6 +21,8 @@ class Product extends Model
     ];
 
     /**
+     * Generate slug name when the Product is created.
+     *
      * @return SlugOptions
      */
     public function getSlugOptions(): SlugOptions
@@ -31,7 +33,7 @@ class Product extends Model
     }
 
     /**
-     * Get store
+     * Get store.
      *
      * @return BelongsTo
      */
@@ -41,7 +43,7 @@ class Product extends Model
     }
 
     /**
-     * Get categories that the products belongs
+     * Get categories that the products belongs.
      *
      * @return BelongsToMany
      */
@@ -51,6 +53,8 @@ class Product extends Model
     }
 
     /**
+     * Get photos.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function photos()

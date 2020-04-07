@@ -36,5 +36,11 @@
   "Confirm": "Confirmar",
   "Go to Login": "Ir para Login",
   "Page Expired": "Página Expirada",
-  "Cart cancelled": "Compra cancelada"
+  "Cart cancelled": "Compra cancelada",
+  "Installment Options": "Opções de Parcelamento",
+  "Credit Card Number": "Número do Cartão de Crédito",
+  "Due Month": "Mês de Vencimento",
+  "Due Year": "Ano de Vencimento",
+  "Verification Code": "Código de Verificação",
+  "Pay": "Efetuar Pagamento"
 }
