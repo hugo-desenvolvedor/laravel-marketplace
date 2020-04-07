@@ -170,7 +170,7 @@
                 dataType: 'json',
                 success: function (response) {
                     console.log('processPayment success', response);
-                    console.log('response.card.token', response.card.token);
+                    console.log('response.data.message', response.data.message);
                 },
                 error: function (error) {
                     console.log('processPayment error', error);

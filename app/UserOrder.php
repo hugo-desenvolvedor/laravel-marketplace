@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UserOrder extends Model
 {
+    protected $fillable = [
+        'reference',
+        'pagseguro_code',
+        'pagseguro_status',
+        'items',
+        'store_id'
+    ];
     /**
      * @return BelongsTo
      */

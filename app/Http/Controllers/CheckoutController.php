@@ -49,8 +49,8 @@ class CheckoutController extends Controller
         $creditCard->setReference($reference);
         $creditCard->setCurrency("BRL");
 
-        $cartitems = session()->get('cart');
-        foreach ($cartitems as $cartItem) {
+        $cartItems = session()->get('cart');
+        foreach ($cartItems as $cartItem) {
             $creditCard->addItems()->withParameters(
                 $reference,
                 $cartItem['name'],
@@ -117,9 +117,23 @@ class CheckoutController extends Controller
             \PagSeguro\Configuration\Configure::getAccountCredentials()
         );
 
-        dd($result);
-    }
+        $userOrder = [
+            'reference' => $reference,
+            'store_id' =>40,
+            'pagseguro_code' => $result->getCode(),
+            'pagseguro_status' => $result->getStatus(),
+            'items' => serialize($cartItems)
+        ];
 
+        $user->orders()->create($userOrder);
+
+        return response()->json([
+            'data' => [
+                'status' => true,
+                'message' => __('Order created with success')
+            ]
+        ]);
+    }
     /**
      * Create PagSeguro session integration
      *
