@@ -25,12 +25,12 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item @if(request()->is('/')) active @endif">
+            <li class="nav-item @if(request()->is('home')) active @endif">
                 <a class="nav-link" href="{{route('home')}}">{{ __('Home') }} <span class="sr-only">(current)</span></a>
             </li>
 
             @foreach($categories as $category)
-                <li class="nav-item @if(request()->is('/')) active @endif">
+                <li class="nav-item @if(request()->is(sprintf('category/%s', $category->slug))) active @endif">
                     <a class="nav-link" href="{{ route('category.single', ['slug' => $category->slug]) }}">{{ __($category->name) }} <span class="sr-only">(current)</span></a>
                 </li>
             @endforeach
