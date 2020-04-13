@@ -1,5 +1,9 @@
 @extends('layouts.front')
 
+@section('stylesheets')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+@endsection
+
 @section('content')
     <div class="col-md-6">
         <div class="row">
@@ -55,6 +59,8 @@
 @endsection
 @section('scripts')
     <script src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
     <script>
         const sessionId = '{{ session()->get('pagseguro_session_code') }}';
         PagSeguroDirectPayment.setSessionId(sessionId);
@@ -171,6 +177,10 @@
                 success: function (response) {
                     console.log('processPayment success', response);
                     console.log('response.data.message', response.data.message);
+
+                    toastr.success(response.data.message, '{{ __('Success') }}');
+
+                    window.location.href = '{{ route('checkout.thanks', ['order' => 'XPTO']) }}';
                 },
                 error: function (error) {
                     console.log('processPayment error', error);
