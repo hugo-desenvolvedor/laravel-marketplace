@@ -43,5 +43,9 @@
   "Due Year": "Ano de Vencimento",
   "Verification Code": "Código de Verificação",
   "Pay": "Efetuar Pagamento",
-  "Order created with success": "Pedido criado com sucesso"
+  "Order created with success": "Pedido criado com sucesso",
+  "Has no product in this category": "Não há produtos para esta categoria",
+  "Games": "Jogos",
+  "TVs": "Televisores",
+  "Phones": "Telefones"
 }

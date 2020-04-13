@@ -31,24 +31,24 @@
 
             @foreach($categories as $category)
                 <li class="nav-item @if(request()->is('/')) active @endif">
-                    <a class="nav-link" href="{{route('home')}}">{{ $category }} <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ route('category.single', ['slug' => $category->slug]) }}">{{ __($category->name) }} <span class="sr-only">(current)</span></a>
                 </li>
             @endforeach
         </ul>
 
-        @auth
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item @if(request()->is('admin/stores*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.stores.index')}}">{{ __('Stores') }} <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item @if(request()->is('admin/products*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.products.index')}}">{{ __('Products') }}</a>
-                </li>
-                <li class="nav-item @if(request()->is('admin/categories*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.categories.index')}}">{{ __('Categories') }}</a>
-                </li>
-            </ul>
-        @endauth
+{{--        @auth--}}
+{{--            <ul class="navbar-nav mr-auto">--}}
+{{--                <li class="nav-item @if(request()->is('admin/stores*')) active @endif">--}}
+{{--                    <a class="nav-link" href="{{route('admin.stores.index')}}">{{ __('Stores') }} <span class="sr-only">(current)</span></a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item @if(request()->is('admin/products*')) active @endif">--}}
+{{--                    <a class="nav-link" href="{{route('admin.products.index')}}">{{ __('Products') }}</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item @if(request()->is('admin/categories*')) active @endif">--}}
+{{--                    <a class="nav-link" href="{{route('admin.categories.index')}}">{{ __('Categories') }}</a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+{{--        @endauth--}}
 
         <div class="my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
