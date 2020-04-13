@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -28,10 +29,17 @@ class CartController extends Controller
      */
     public function add(Request $request)
     {
-        $product = $request->get('product');
+        $data = $request->get('product');
+        $product = Product::whereSlug($data['slug']);
+
+        if (!$product->count()) {
+            return redirect()->route('home');
+        }
+
+        $product = $product->first(['name', 'price'])->toArray();
+        $product = array_merge($data, $product);
 
         if (session()->has('cart')) {
-
             $products = session()->get('cart');
             $productSlugs = array_column($products, 'slug');
 

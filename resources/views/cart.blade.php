@@ -1,13 +1,6 @@
 @extends('layouts.front')
 
 @section('content')
-
-
-    {{--            <tr>--}}
-    {{--                <td colspan="4"></td>--}}
-    {{--                <td>{{ $total }}</td>--}}
-    {{--            </tr>--}}
-    {{--   --}}
     <div class="row">
         <div class="col-12">
             <h2>{{ __('Shop Cart') }}</h2>
@@ -55,5 +48,4 @@
             <a href="{{ route('cart.cancel') }}" class="btn btn-lg btn-danger float-left">{{ __('Cancel') }}</a>
         </div>
     </div>
-
 @endsection
