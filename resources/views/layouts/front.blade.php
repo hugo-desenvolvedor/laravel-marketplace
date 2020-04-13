@@ -28,6 +28,12 @@
             <li class="nav-item @if(request()->is('/')) active @endif">
                 <a class="nav-link" href="{{route('home')}}">{{ __('Home') }} <span class="sr-only">(current)</span></a>
             </li>
+
+            @foreach($categories as $category)
+                <li class="nav-item @if(request()->is('/')) active @endif">
+                    <a class="nav-link" href="{{route('home')}}">{{ $category }} <span class="sr-only">(current)</span></a>
+                </li>
+            @endforeach
         </ul>
 
         @auth
@@ -68,7 +74,8 @@
 </div>
 
 <!-- JQuery -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 @yield('scripts')
 </body>

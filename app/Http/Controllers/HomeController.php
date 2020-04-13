@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Store;
 use Illuminate\Http\Request;
 use App\Product;
 
@@ -25,9 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = $this->product->limit(8)->get();
+        $products = $this->product->limit(6)->get();
+        $stores = Store::limit(3)->get();
 
-        return view('welcome', compact('products'));
+        return view('welcome', compact('products', 'stores'));
     }
 
     /**

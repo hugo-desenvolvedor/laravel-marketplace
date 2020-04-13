@@ -26,4 +26,24 @@
         @endif
         @endforeach
     </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h2>
+                {{ __('Featured Stores') }}
+            </h2>
+        </div>
+        @foreach($stores as $store)
+            <div class="col-4">
+                @if($store->logo)
+                    <img class="img-fluid" src="{{ asset('storage/' . $store->logo) }}" alt="{{ $store->name }}">
+                @else
+                    <img class="img-fluid" src="https://via.placeholder.com/640x480.png?text={{ $store->name }}" alt="{{ $store->name }}">
+                @endif
+
+                <h3>{{ $store->name }}</h3>
+                <p>{{ $store->description }}</p>
+            </div>
+        @endforeach
+    </div>
 @endsection
