@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\UserOrder;
+use Illuminate\Http\Request;
+
+class OrdersController extends Controller
+{
+    private UserOrder $order;
+
+    /**
+     * OrdersController constructor.
+     * @param UserOrder $order
+     */
+    public function __construct(UserOrder $order)
+    {
+        $this->order = $order;
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        $orders = auth()->user()->store->orders()->paginate(10);
+
+        return view('admin.orders.index', compact('orders'));
+    }
+
+}

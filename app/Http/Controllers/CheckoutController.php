@@ -50,9 +50,11 @@ class CheckoutController extends Controller
             $data = $request->all();
             $user = auth()->user();
             $cartItems = session()->get('cart');
+            $stores = array_unique(array_column($cartItems, 'store_id'));
             $reference = 'XPTO';
             $creditCardPayment = new CreditCard($cartItems, $user, $data, $reference);
             $result = $creditCardPayment->doPayment();
+
             $userOrder = [
                 'reference' => $reference,
                 'store_id' => 40,
@@ -60,7 +62,9 @@ class CheckoutController extends Controller
                 'pagseguro_status' => $result->getStatus(),
                 'items' => serialize($cartItems)
             ];
-            $user->orders()->create($userOrder);
+            $userOrder = $user->orders()->create($userOrder);
+            $userOrder->stores()->sync($stores);
+
             session()->forget('cart');
             session()->forget('pagseguro_session_code');
 
@@ -86,6 +90,7 @@ class CheckoutController extends Controller
             );
         }
     }
+
     /**
      * Create PagSeguro session integration
      *

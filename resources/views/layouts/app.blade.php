@@ -19,8 +19,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 @auth
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item @if(request()->is('home')) active @endif ">
-                <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+            <li class="nav-item @if(request()->is('admin/orders*')) active @endif ">
+                <a class="nav-link" href="{{ route('admin.orders.index') }}">{{ __('My orders') }}</a>
             </li>
             <li class="nav-item @if(request()->is('admin/stores*')) active @endif ">
                 <a class="nav-link" href="{{ route('admin.stores.index') }}">{{ __('Stores') }}</a>
@@ -47,9 +47,16 @@
 @endauth
     </div>
 </nav>
+
 <div class="container">
     @include('flash::message')
     @yield('content')
 </div>
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap Javascript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+@yield('scripts')
 </body>
 </html>

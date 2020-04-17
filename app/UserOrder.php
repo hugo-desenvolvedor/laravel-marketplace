@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class UserOrder extends Model
 {
@@ -14,7 +15,10 @@ class UserOrder extends Model
         'items',
         'store_id'
     ];
+
     /**
+     * Get user.
+     *
      * @return BelongsTo
      */
     public function user()
@@ -23,10 +27,22 @@ class UserOrder extends Model
     }
 
     /**
+     * Get store.
+     *
      * @return BelongsTo
      */
     public function store()
     {
         return $this->belongsTo(Store::class);
+    }
+
+    /**
+     * Get stores.
+     *
+     * @return BelongsToMany
+     */
+    public function stores()
+    {
+        return $this->belongsToMany(Store::class);
     }
 }

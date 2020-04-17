@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -56,10 +57,10 @@ class Store extends Model
     /**
      * Get orders.
      *
-     * @return HasMany
+     * @return BelongsToMany
      */
     public function orders()
     {
-        return $this->hasMany(UserOrder::class);
+        return $this->belongsToMany(UserOrder::class);
     }
 }

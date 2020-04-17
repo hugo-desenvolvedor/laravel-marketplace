@@ -31,37 +31,28 @@
 
             @foreach($categories as $category)
                 <li class="nav-item @if(request()->is(sprintf('category/%s', $category->slug))) active @endif">
-                    <a class="nav-link" href="{{ route('category.single', ['slug' => $category->slug]) }}">{{ __($category->name) }} <span class="sr-only">(current)</span></a>
+                    <a class="nav-link"
+                       href="{{ route('category.single', ['slug' => $category->slug]) }}">{{ __($category->name) }}
+                        <span class="sr-only">(current)</span></a>
                 </li>
             @endforeach
         </ul>
 
-{{--        @auth--}}
-{{--            <ul class="navbar-nav mr-auto">--}}
-{{--                <li class="nav-item @if(request()->is('admin/stores*')) active @endif">--}}
-{{--                    <a class="nav-link" href="{{route('admin.stores.index')}}">{{ __('Stores') }} <span class="sr-only">(current)</span></a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item @if(request()->is('admin/products*')) active @endif">--}}
-{{--                    <a class="nav-link" href="{{route('admin.products.index')}}">{{ __('Products') }}</a>--}}
-{{--                </li>--}}
-{{--                <li class="nav-item @if(request()->is('admin/categories*')) active @endif">--}}
-{{--                    <a class="nav-link" href="{{route('admin.categories.index')}}">{{ __('Categories') }}</a>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
-{{--        @endauth--}}
-
         <div class="my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
-                <li>
-                    @if(session()->has('cart'))
-                        <a href="{{ route('cart.index') }}" class="nav-link">
+                <li class="nav-item @if(request()->is('my-orders')) active @endif">
+                    <a href="{{ route('user.orders') }}" class="nav-link">{{ __('My Orders') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('cart.index') }}" class="nav-link">
+                        @if(session()->has('cart'))
                             <span class="badge badge-danger">
 {{--                                {{ array_sum(array_column(session()->get('cart'), 'amount')) }}--}}
                                 {{ count(session()->get('cart')) }}
                             </span>
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    @endif
+                        @endif
+                        <i class="fa fa-shopping-cart"></i>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -76,6 +67,10 @@
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
+        crossorigin="anonymous"></script>
 
 @yield('scripts')
 </body>
